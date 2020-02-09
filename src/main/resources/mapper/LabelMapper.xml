@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.nju.callgraph.mapper.LabelMapper" >
+  <resultMap id="BaseResultMap" type="com.nju.callgraph.pojo.Label" >
+    <id column="labelid" property="labelid" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="projectid" property="projectid" jdbcType="VARCHAR" />
+    <result column="parentelement" property="parentelement" jdbcType="VARCHAR" />
+    <result column="ownername" property="ownername" jdbcType="VARCHAR" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    labelid, title, content, projectid, parentelement, ownername, createtime
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.nju.callgraph.pojo.LabelExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from plat_label
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="startRow != null and pageSize != null and pageSize != 0">
+      limit #{startRow},#{pageSize}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from plat_label
+    where labelid = #{labelid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from plat_label
+    where labelid = #{labelid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.nju.callgraph.pojo.LabelExample" >
+    delete from plat_label
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.nju.callgraph.pojo.LabelExample" >
+    insert into plat_label ( title, content,
+      projectid, parentelement, ownername)
+    values ( #{title,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR},
+      #{projectid,jdbcType=VARCHAR}, #{parentelement,jdbcType=VARCHAR}, #{ownername,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.nju.callgraph.pojo.LabelExample" >
+    insert into plat_label
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="labelid != null" >
+        labelid,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="projectid != null" >
+        projectid,
+      </if>
+      <if test="parentelement != null" >
+        parentelement,
+      </if>
+      <if test="ownername != null" >
+        ownername,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="labelid != null" >
+        #{labelid,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="projectid != null" >
+        #{projectid,jdbcType=VARCHAR},
+      </if>
+      <if test="parentelement != null" >
+        #{parentelement,jdbcType=VARCHAR},
+      </if>
+      <if test="ownername != null" >
+        #{ownername,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.nju.callgraph.pojo.LabelExample" resultType="java.lang.Integer" >
+    select count(*) from plat_label
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update plat_label
+    <set >
+      <if test="record.labelid != null" >
+        labelid = #{record.labelid,jdbcType=INTEGER},
+      </if>
+      <if test="record.title != null" >
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.content != null" >
+        content = #{record.content,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectid != null" >
+        projectid = #{record.projectid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.parentelement != null" >
+        parentelement = #{record.parentelement,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ownername != null" >
+        ownername = #{record.ownername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createtime != null" >
+        createtime = #{record.createtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update plat_label
+    set labelid = #{record.labelid,jdbcType=INTEGER},
+      title = #{record.title,jdbcType=VARCHAR},
+      content = #{record.content,jdbcType=VARCHAR},
+      projectid = #{record.projectid,jdbcType=VARCHAR},
+      parentelement = #{record.parentelement,jdbcType=VARCHAR},
+      ownername = #{record.ownername,jdbcType=VARCHAR},
+      createtime = #{record.createtime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.nju.callgraph.pojo.LabelExample" >
+    update plat_label
+    <set >
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="projectid != null" >
+        projectid = #{projectid,jdbcType=VARCHAR},
+      </if>
+      <if test="parentelement != null" >
+        parentelement = #{parentelement,jdbcType=VARCHAR},
+      </if>
+      <if test="ownername != null" >
+        ownername = #{ownername,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where labelid = #{labelid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.nju.callgraph.pojo.LabelExample" >
+    update plat_label
+    set title = #{title,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      projectid = #{projectid,jdbcType=VARCHAR},
+      parentelement = #{parentelement,jdbcType=VARCHAR},
+      ownername = #{ownername,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=TIMESTAMP}
+    where labelid = #{labelid,jdbcType=INTEGER}
+  </update>
+</mapper>

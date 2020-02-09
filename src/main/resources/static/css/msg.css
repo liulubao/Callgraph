@@ -1,0 +1,106 @@
+.msg-content {
+    padding: 0 15px;
+}
+.message-list li {
+    position: relative;
+    padding: 10px 0;
+    border-bottom: 1px solid #c8c8c8;
+    overflow: hidden;
+    *zoom: 1;
+}
+.message-list .label-fl {
+    float: left;
+    width: 38px;
+    text-align: center;
+}
+.message-list .avatar {
+    float: left;
+    margin-right: 10px;
+}
+.message-list .header-title {
+    height: 30px;
+}
+/*.message-list-1 .header-title .name {
+    color: #444;
+}
+.message-list-1 .header-title .name:hover {
+    color: #444;
+    background: none;
+}*/
+.message-list .header-title .time {
+    margin-left: 1px;
+    color: #999;
+}
+.message-list .header-title .text {
+    color: #111;
+}
+.message-list .button-delete {
+    display: none;
+    position: absolute;
+    right: 0;
+    bottom: 20px;
+}
+.message-list .point {
+    display: none;
+    width: 3px;
+    height: 3px;
+    margin-right: 2px;
+    overflow: hidden;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    background: #333;
+    vertical-align: middle;
+}
+.message-list-1 .text a {
+    color: #444;
+}
+.message-list-1 .text a:hover {
+    background: none;
+    color: #444;
+}
+.message-list .unread .text {
+    font-weight: 700;
+}
+.message-list .unread .point {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+}
+
+.message-list .li:hover .button-delete {
+    display: none;
+}
+.message-list .count {
+    font-weight: 400;
+}
+
+.message-list .not-msg {
+    padding-top: 50px;
+    text-align: center;
+    font-size: 14px;
+    color: #999;
+    border-bottom: none;
+}
+
+.ta-message-list li {
+    position: relative;
+    padding-left: 1px;
+}
+
+.ta-message-list .avatar {
+    position: absolute;
+    top: 20px;
+    left: 12px;
+}
+
+.message-list .header-title {
+    height: 30px;
+}
+.message-list .header-title .time {
+    margin-left: 10px;
+    color: #999;
+}
+.message-list .header-title .text {
+    color: #111;
+}

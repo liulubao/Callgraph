@@ -1,0 +1,300 @@
+<span style="font-size:18px;"><!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+
+    <title>个人信息</title>
+    <!--<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">-->
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/bootstrap.css" rel="stylesheet">
+    <link href="./css/navbarcolor.css" rel="stylesheet">
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/bootstrap.js"></script>
+
+    <script src="./js/bootstrap-table.js"></script>
+    <script src="./js/locales/bootstrap-table-zh-CN.js"></script>
+    <link href="./css/bootstrap-table.css" rel="stylesheet">
+    <script type="text/javascript" src="./js/bootbox.min.js"></script>
+    <link href="css/msg.css" rel="stylesheet">
+
+    <!--<link href="./msg.css" rel="stylesheet">-->
+<style>
+	body{
+        background-color: #F5F6F7;
+        /*margin-top: 65px;*/
+    }
+
+    .col-md-2:after{
+        content: '';
+        position: absolute;
+        width: 5px;
+        height: 100%;
+        background-color:  #F5F6F7;
+        top:1px;
+        bottom: 1px;
+        right: 0;}
+
+    .col-md-2{
+        background-color: #FFFFFF;
+        /*?*/
+        /*height: 600px;*/
+    }
+    .col-md-10{
+        background-color: #FFFFFF;
+    }
+    #left-content{
+        margin-top: 20px;
+    }
+
+
+
+</style>
+	<!--<link href="./css/bootstrap.min.css" rel="stylesheet">-->
+    <script src="./js/jquery.min.js"></script>
+    <!--<script src="./js/bootstrap.js" type="text/javascript"></script>-->
+
+    <!--<script src="./js/bootstrapValidator.js" type="text/javascript"></script>-->
+    <!--<link href="./css/bootstrapValidator.css" media="all" rel="stylesheet" type="text/css"/>-->
+
+</head>
+
+<body>
+<nav class="navbar navbar-inverse">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">代码依赖分析与展示平台</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="index2.html">依赖图</a></li>
+                <!--<li><a href="javascript:void(0);">Contact</a></li>-->
+                <li class="dropdown dependency">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">个人主页 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="indexinfo.html">个人信息</a></li>
+                        <li><a href="indexproject.html">我的项目</a></li>
+                        <li><a href="indexlabel.html">我的标签</a></li>
+                        <li><a href="indexlabel.html">我的关注</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <!--<ul id="nav1" class="nav navbar-nav navbar-right">-->
+                <!--<li style="float: right"><a data-toggle="modal" data-target="#register_window" href=""><span class="glyphicon glyphicon-user"></span> 注册</a></li>-->
+                <!--<li style="float: right"><a data-toggle="modal" data-target="#login_window" href=""><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>-->
+            <!--</ul>-->
+            <!--<ul id="nav2" class="nav navbar-nav navbar-right" >-->
+                <!--<li style="float: right"><a id="poptest"  href="#"></a></li>-->
+            <!--</ul>-->
+        </div>
+    </div>
+</nav>
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-2">
+			<div class="text-center" id="left-content">
+				<div class="list-group">
+					<!--<a href="index.html" class="list-group-item active">首页</a>-->
+				</div>
+				<div class="list-group dependency">
+					<a href="index2.html" class="list-group-item">返回依赖</a>
+				</div>
+				<div class="list-group">
+					<a href="indexinfo.html" class="list-group-item active">基本信息</a>
+					<a href="indexproject.html" class="list-group-item">我的项目</a>
+					<a href="indexlabel.html" class="list-group-item">我的标签</a>
+                    <a href="indexfriend.html" class="list-group-item">我的关注</a>
+				</div>
+                <!--<div class="list-group">-->
+                <!--<a href="#" class="list-group-item">设置</a>-->
+                <!--<a href="#" class="list-group-item">帮助</a>-->
+                <!--</div>-->
+			</div>
+		</div>
+
+<div id="update_window" class="modal fade" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-title">
+                <h1 class="text-center">注册</h1>
+            </div>
+			<!--<div class="modal-header">-->
+			<!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
+			<!--<h4 class="modal-title">Modal title</h4>-->
+			<!--</div>-->
+            <div class="modal-body">
+                <form id="update_form" class="form-group" action="">
+                    <div class="form-group">
+                        <label for="">显示昵称</label>
+                        <input name="viewname" id="viewname" class="form-control" type="text" placeholder="6-15位字母或数字">
+                    </div>
+                    <div class="form-group">
+                        <label for="">密码</label>
+                        <input name="password" id="password" class="form-control" type="password" placeholder="至少6位字母或数字">
+                    </div>
+                    <div class="form-group">
+                        <label for="">再次输入密码</label>
+                        <input name="confirmPassword" id="confirmPassword" class="form-control" type="password" placeholder="至少6位字母或数字">
+                    </div>
+                    <div class="form-group">
+                        <label for="">邮箱</label>
+                        <input name="email" id="email" class="form-control" type="email" placeholder="例如:123@123.com">
+                    </div>
+                    <div style="float:right">
+                        <span id="register_tip_btn" class="register_tip_btn login_tip_btn tip text-danger"></span>
+                        <button id="register_submit" class="btn btn-primary">提交</button>
+                        <button class="btn btn-danger" data-dismiss="modal">取消</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+		<div class="col-md-10">
+            <div style="height: 35px;text-align:center;margin-top: 5px;margin-left: 40px">
+                <button class="btn btn-success" style="float: left;margin-right: 5px"><a href="indexmessagelist.html"></a>返回私信列表</button>
+                <p style="margin-top: 20px">与 <span id="nickname">测试昵称</span> 的私信记录
+            </div>
+
+			<hr class="divider">
+
+			<!--<div >-->
+            <div style="margin-left: 40px">
+                <textarea id="messagecontent" class="form-control" id="deblock_udid" name="deblock_udid" rows="3" style="min-width: 90%"></textarea>
+            </div>
+
+            <div style="margin-top: 5px;margin-right: 5px">
+                <button id="sendmessage" class="btn btn-primary" style="float:right;">发送</button>
+            </div>
+            <hr class="divider" style="margin-top: 50px">
+            <ul class="message-list ta-message-list" id="J_messageList">
+
+            </ul>
+<!--</div>-->
+
+		</div>
+
+		</div>
+
+	</div>
+
+</div>
+
+<script>
+    $("li").mouseover(function(){
+        // alert('sss');
+        $("li").removeClass("hover");
+        $('.button-delete').css("display","none")
+        $(this).addClass("hover")
+        $(this).find('.button-delete').css("display","block")
+    });
+</script>
+<script>
+    function getCookie(name) {
+        var nameEQ = name + "=";
+        var ca = document.cookie.split(';');
+        for(var i=0;i < ca.length;i++) {
+            var c = ca[i];
+            while (c.charAt(0)==' ') c = c.substring(1,c.length);
+            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+        }
+        return null;
+    }
+	$(function () {
+        var username = getCookie("dependency_loginname");
+        var friendname = getCookie("dependency_friendname");
+        document.getElementById("nickname").innerText = friendname;
+        if(username.length != 0 && friendname.length != 0){
+            // var node = document.getElementById("friends");
+            $.ajax({
+                type: 'GET',
+                url: "/message/getbybothloginname",
+                dataType: 'json',
+                // contentType: 'application/json',
+                <!-- headers: { 'userName': username, 'password': password }, -->
+                data:{"userName":username,"friendName":friendname},
+                success: function (data) {
+                    // console.log(data.rows[0])
+                    for(var i=0;i<data.data.length;i++){
+                        console.log(data.data[i].friendName);
+                        // $('#friends').append("<option value="+data.rows[i].followedloginname+">")
+                        $('#J_messageList').append("<li data-time=\"\">\n" +
+                            "            <div class=\"name-text\">\n" +
+                            "                <div class=\"header-title\">\n" +
+                            "\n" +
+                            "                    <a class=\"name blue\" href=\"https://my.hupu.com/192340456572220\" target=\"_blank\">"+data.data[i].senderName+"</a>\n" +
+                            "\n" +
+                            "                    <span class=\"time\">"+data.data[i].sendTime+"</span>\n" +
+                            "                </div>\n" +
+                            "                <div class=\"text\">\n" +
+                            "                    <i class=\"point\"></i>\n" +
+                            "                    "+data.data[i].messageContent+"\n" +
+                            "                </div>\n" +
+                            "                <a class=\"button-delete J_listButtonDelete\" href=\"javascript:\" data-pmid=\"7000778221\">删除</a>\n" +
+                            "            </div>\n" +
+                            "        </li>");
+
+                    }
+                    $("li").mouseover(function () {
+                        // alert('sss');
+                        // $("li").removeClass("hover");
+                        $("li").removeClass("hover");
+                        $('.button-delete').css("display", "none")
+                        $(this).addClass("hover")
+                        $(this).find('.button-delete').css("display", "block")
+                        // bootbox.alert($(this).attr("id"));
+                    });
+                    $("li").mouseleave(function () {
+                        $(this).removeClass("hover");
+                        $(this).find('.button-delete').css("display", "none");
+                    })
+                    // $("li").click(function (e) {
+                    //     // bootbox.alert("e.target");
+                    //     // bootbox.alert(e.target);
+                    //     setCookie("dependency_friendname",$(this).attr("id"));
+                    // })
+
+                },
+                error: function(data) {
+                    bootbox.alert('查找失败！');
+                },
+            })
+        }
+	})
+    $("#sendmessage").click(function () {
+        // bootbox.alert($("#messagecontent").val());
+        var messagecontent = $("#messagecontent").val();
+        var username = getCookie("dependency_loginname");
+        var friendname = getCookie("dependency_friendname");
+        $.ajax({
+            type: 'POST',
+            url: "/message/savemessage",
+            dataType: 'json',
+            contentType: 'application/json',
+            <!-- headers: { 'userName': username, 'password': password }, -->
+            data:'{"userName":"'+username+'","friendName":"'+friendname+'","senderName":"'+username+'","receiverName":"'+friendname+'","messageContent":"'+messagecontent+'","status":"'+0+'","messageType":"'+0+'"}',
+            success: function (data) {
+                // console.log(data.rows[0])
+                location.reload();
+            },
+            error: function(data) {
+                bootbox.alert('发送失败！');
+            },
+        })
+    })
+</script>
+</body>
+</html></span>

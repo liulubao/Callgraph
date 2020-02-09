@@ -1,0 +1,373 @@
+<span style="font-size:18px;"><!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8">
+
+<title>我的项目</title>
+
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/bootstrap.css" rel="stylesheet">
+    <link href="./css/navbarcolor.css" rel="stylesheet">
+<style>
+	body{
+        background-color: #F5F6F7;
+        /*margin-top: 65px;*/
+    }
+    #c1:after{
+        content: '';
+        position: absolute;
+        width: 5px;
+        height: 100%;
+        background-color:  #F5F6F7;
+        top:1px;
+        bottom: 1px;
+        right: 0;}
+
+    #c1{
+        margin-top: 20px;
+        background-color: #FFFFFF;
+        /*?*/
+        /*height: 600px;*/
+    }
+    #c2{
+        margin-top: 20px;
+        background-color: #FFFFFF;
+    }
+    #left-content{
+        margin-top: 20px;
+    }
+
+    #panel-group{
+        margin-top: 20px;
+    }
+
+
+</style>
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-inverse">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">代码依赖分析与展示平台</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="index.html">首页</a></li>
+                <li class="dependency"><a href="index2.html">依赖图</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">个人主页 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="indexinfo.html">个人信息</a></li>
+                        <li><a href="indexproject.html">我的项目</a></li>
+                        <li><a href="indexlabel.html">我的标签</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">分享项目</h4>
+      </div>
+      <div class="modal-body">
+        <form id="login_form" class="form-group" action="">
+                    <div class="input-group">
+                        <label for="">用户名</label>
+                        <input id="targetname" type="text" class="form-control" list="friends">
+                        <datalist id="friends">
+                            <option value="Apple">
+                            <option value="Microsoft">
+                            <option value="Github">
+                        </datalist>
+                    </div>
+		</form>
+      </div>
+      <div class="modal-footer">
+		  <button id="share" type="button" class="btn btn-primary" value="">分享</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+	<div class="row">
+		<div id="c1" class="col-md-2">
+			<div class="text-center" id="left-content">
+				<div class="list-group">
+					<!--<a href="index.html" class="list-group-item active">首页</a>-->
+				</div>
+				<div class="list-group">
+					<a href="index2.html" class="list-group-item dependency">返回依赖</a>
+				</div>
+				<div class="list-group">
+					<a href="indexinfo.html" class="list-group-item ">基本信息</a>
+					<a href="indexproject.html" class="list-group-item active">我的项目</a>
+					<a href="indexlabel.html" class="list-group-item ">我的标签</a>
+                    <a href="indexfriend.html" class="list-group-item">我的关注</a>
+				</div>
+			</div>
+		</div>
+		<div id="c2" class="col-md-10">
+			<h2>我的项目</h2>
+			<hr class="divider">
+            <table id="projectTable" data-unique-id="idx" style="word-break:break-all; word-wrap:break-all;"></table>
+		</div>
+	</div>
+</div>
+
+
+
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/bootstrap.js"></script>
+
+    <script src="./js/bootstrap-table.js"></script>
+    <script src="./js/locales/bootstrap-table-zh-CN.js"></script>
+    <link href="./css/bootstrap-table.css" rel="stylesheet">
+<script type="text/javascript" src="./js/bootbox.min.js"></script>
+<script>
+    function getCookie(name) {
+        var nameEQ = name + "=";
+        var ca = document.cookie.split(';');
+        for(var i=0;i < ca.length;i++) {
+            var c = ca[i];
+            while (c.charAt(0)==' ') c = c.substring(1,c.length);
+            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+        }
+        return null;
+    }
+    $('#share').click(function () {
+    	var projectid = $('#share').val();
+		var targetname = $('#targetname').val();
+		if(targetname != getCookie("dependency_loginname")){
+			$.ajax({
+				type: 'POST',
+				url: "/project/share",
+				// dataType: 'json',
+				// contentType: 'application/json',
+				<!-- headers: { 'userName': username, 'password': password }, -->
+				data:{"username":targetname,"projectid":projectid},
+				success: function (data) {
+					// setCookie("session-id", data.sessiondId, false);
+					// window.alert('注册成功！');
+					// $('#register_form').modal('hide');
+					if(data.status==1){
+                        bootbox.alert('分享成功');
+						$('#myModal').modal('hide');
+					}else{
+                        bootbox.alert("分享失败!"+data.message);
+						$('#myModal').modal('hide');
+					}
+
+				},
+				error: function(data) {
+
+				},
+			})
+		}
+	})
+    $(function () {
+        var projectid = getCookie('dependency_projectid');
+        if(projectid!=""&&projectid!=null&&projectid!=undefined){
+            alert('block' + projectid)
+            $('.dependency').css('display','block')
+        }else{
+            alert('none')
+            $('.dependency').css('display','none')
+        }
+
+        var followingloginname = getCookie("dependency_loginname");
+        if(followingloginname.length != 0){
+            var node = document.getElementById("friends");
+            while(node.hasChildNodes()) //当div下还存在子节点时 循环继续
+            {
+                node.removeChild(node.firstChild);
+            }
+            $.ajax({
+                type: 'GET',
+                url: "/friend/getbyfollowingloginname",
+                dataType: 'json',
+                // contentType: 'application/json',
+                <!-- headers: { 'userName': username, 'password': password }, -->
+                data:{"followingloginname":followingloginname},
+                success: function (data) {
+                    // console.log(data.rows[0])
+                    for(var i=0;i<data.rows.length;i++){
+                        console.log(data.rows[i].followedloginname);
+                        $('#friends').append("<option value="+data.rows[i].followedloginname+">")
+                    }
+
+                },
+                error: function(data) {
+                    bootbox.alert('查找失败');
+                },
+            })
+        }
+
+        //1.初始化Table
+        var oTable = new TableInit();
+        oTable.Init();
+
+        //2.初始化Button的点击事件
+        var oButtonInit = new ButtonInit();
+        oButtonInit.Init();
+
+    });
+
+    var TableInit = function () {
+        var oTableInit = new Object();
+        //初始化Table
+        oTableInit.Init = function () {
+            $('#projectTable').bootstrapTable({
+                url: '/project/getallproject',         //请求后台的URL（*）
+                method: 'GET',                      //请求方式（*）
+                toolbar: '#toolbar',                //工具按钮用哪个容器
+                striped: true,                      //是否显示行间隔色
+                cache: false,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+                pagination: true,                   //是否显示分页（*）
+                sortable: false,                     //是否启用排序
+                sortOrder: "asc",                   //排序方式
+                queryParams: oTableInit.queryParams,//传递参数（*）
+                sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）
+                pageNumber: 1,                       //初始化加载第一页，默认第一页
+                pageSize: 10,                       //每页的记录行数（*）
+                pageList: [10, 25, 50, 100],        //可供选择的每页的行数（*）
+                search: true,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
+                contentType: "application/x-www-form-urlencoded",
+                strictSearch: true,
+                showColumns: true,                  //是否显示所有的列
+                showRefresh: true,                  //是否显示刷新按钮
+                minimumCountColumns: 2,             //最少允许的列数
+                clickToSelect: true,                //是否启用点击选中行
+                height: 700,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
+                uniqueId: "projectid",                     //每一行的唯一标识，一般为主键列
+                showToggle: true,                    //是否显示详细视图和列表视图的切换按钮
+                cardView: false,                    //是否显示详细视图
+                detailView: false,                   //是否显示父子表
+                columns: [
+                    {
+                        field: 'projectname',
+                        title: '项目名称'
+                    }, {
+                        field: 'createtime',
+                        title: '操作时间'
+                    },
+                    {
+                        field: 'operate',
+                        title: '操作',
+                        events: operateEvents1,
+                        formatter: operateFormatter //自定义方法，添加操作按钮
+                    },
+                ],
+                rowStyle: function (row, index) {
+                    // var classesArr = ['success', 'info'];
+                    var strclass = "";
+                    if (index % 2 === 0) {//偶数行
+                        // strclass = classesArr[0];
+                        strclass="active"
+                    } else {//奇数行
+                        // strclass = classesArr[1];
+                    }
+                    return { classes: strclass };
+                },//隔行变色
+            });
+
+        };
+
+        //得到查询的参数
+        oTableInit.queryParams = function (params) {
+            var temp = {   //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
+                limit: params.limit,   //页面大小
+                offset:params.offset,
+                username:getCookie("dependency_loginname"),
+                sort: params.projectname,      //排序列名
+                sortOrder: "desc" //排位命令（desc，asc）
+                // limit: 10,   //页面大小
+                // offset:10,
+            };
+            return temp;
+        };
+        return oTableInit;
+    };
+
+    function operateFormatter(value, row, index) {//赋予的参数
+        console.log('value:'+value);
+        console.log('row:'+row.projectid);
+        console.log('index:'+index);
+        return [
+            // '<a class="btn active disabled" href="#">编辑</a>',
+			'<a class="lshare btn btn-default" href="#" value="row.projectid" data-toggle="modal" data-target="#myModal">分享</a>',
+            '<a class="ldetail btn btn-default" href="#" value="row.projectid">查看依赖</a>',
+            '<a class="ldelete btn btn-danger" href="#" value="row.projectid">删除</a>',
+            // '<a class="btn active" href="#">准入</a>'
+        ].join('');
+    }
+
+    window.operateEvents1 = {
+		'click .lshare': function(e, value, row, index) {
+			$('#share').val(row.projectid);
+			$('#targetname').val('');
+
+		},
+        'click .ldetail': function(e, value, row, index) {
+            // alert(row.createtime)
+            // $(this).hidden
+            // var uid=$(this).parent().parent().attr("data-uniqueid");
+            // console.log(uid)
+			setCookie("dependency_projectid",row.projectid,24);
+			window.location.href="index2.html"
+        },
+        'click .ldelete': function(e, value, row, index) {
+            alert(row.createtime)
+            // $(this).parent().parent().remove();
+			var uid = row.projectid;
+			$('#projectTable').bootstrapTable('removeByUniqueId', uid);
+        }
+
+    };
+    //
+    // function operateFormatter(value, row, index) {
+    //     return [
+    //         '<button id="btn_detail" type="button" class="RoleOfA btn-default bt-select">详情</button>',
+    //     ].join('');
+    // }
+	function setCookie(name,value,days) {
+		var expires = "";
+		if (days) {
+			var date = new Date();
+			date.setTime(date.getTime() + (days*24*60*60*1000));
+			expires = "; expires=" + date.toUTCString();
+		}
+		document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+	}
+
+    var ButtonInit = function () {
+        var oInit = new Object();
+        var postdata = {};
+
+        oInit.Init = function () {
+            //初始化页面上面的按钮事件
+            $(".btn").click(function () {
+                // alert($(this).val());
+            })
+        };
+
+        return oInit;
+    };
+</script>
+</body>
+</html></span>

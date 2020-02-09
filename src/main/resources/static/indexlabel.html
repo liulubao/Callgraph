@@ -1,0 +1,399 @@
+<span style="font-size:18px;"><!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8">
+
+	<title>我的标签</title>
+	<!--<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">-->
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/bootstrap.css" rel="stylesheet">
+	<link href="./css/navbarcolor.css" rel="stylesheet">
+<style>
+    	body{
+            background-color: #F5F6F7;
+            /*margin-top: 65px;*/
+        }
+        #c1:after{
+            content: '';
+            position: absolute;
+            width: 5px;
+            height: 100%;
+            background-color:  #F5F6F7;
+            top:1px;
+            bottom: 1px;
+            right: 0;}
+
+        #c1{
+            margin-top: 20px;
+            background-color: #FFFFFF;
+            /*?*/
+            /*height: 600px;*/
+        }
+        #c2{
+            margin-top: 20px;
+            background-color: #FFFFFF;
+        }
+        #left-content{
+            margin-top: 20px;
+        }
+	/*body{*/
+        /*background-color: #F5F6F7;*/
+        /*!*margin-top: 65px;*!*/
+    /*}*/
+    /*.col-md-2:after{*/
+        /*content: '';*/
+        /*position: absolute;*/
+        /*width: 5px;*/
+        /*height: 100%;*/
+        /*background-color:  #F5F6F7;*/
+        /*top:1px;*/
+        /*bottom: 1px;*/
+        /*right: 0;}*/
+
+    /*.col-md-2{*/
+        /*background-color: #FFFFFF;*/
+        /*!*?*!*/
+        /*!*height: 600px;*!*/
+    /*}*/
+    /*.col-md-10{*/
+        /*background-color: #FFFFFF;*/
+    /*}*/
+    /*#left-content{*/
+        /*margin-top: 20px;*/
+    /*}*/
+    /*#panel-group{*/
+        /*margin-top: 20px;*/
+    /*}*/
+
+
+</style>
+
+</head>
+
+<body>
+<!--<nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">-->
+<!--&lt;!&ndash;container-fluid表示自适应大小，container表示居中&ndash;&gt;-->
+<!--<div class="container">-->
+<!--&lt;!&ndash;定义顶部导航栏&ndash;&gt;-->
+<!--<div class="navbar-header">-->
+<!--&lt;!&ndash;button是当屏幕小于多少时出现的可以打开导航列表的按钮&ndash;&gt;-->
+<!--<button type="button" class="navbar-toggle collapsed"-->
+<!--data-toggle="collapse" data-target="#demo-navbar">-->
+<!--<span class="sr-only">Toggle navigation</span>-->
+<!--<span class="icon-bar"></span>-->
+<!--<span class="icon-bar"></span>-->
+<!--<span class="icon-bar"></span>-->
+<!--</button>-->
+<!--<a class="navbar-brand" href="#">某管理系统</a>-->
+<!--</div>-->
+
+<!--&lt;!&ndash;collapse用于导航栏折叠之后数据在button按钮里点击显示&ndash;&gt;-->
+<!--<div class="collapse navbar-collapse" id="demo-navbar">-->
+<!--&lt;!&ndash;nav navbar-nav表示显示在导航栏里&ndash;&gt;-->
+<!--<ul class="nav navbar-nav">-->
+<!--<li class="active"><a href="#">首页</a></li>-->
+<!--<li class="dropdown">-->
+<!--<a href="#" class="dropdown-toggle" data-toggle="dropdown">功能<span class="caret"></span></a>-->
+<!--<ul class="dropdown-menu" role="menu">-->
+<!--&lt;!&ndash;通过dropdown-header来标记一组动作&ndash;&gt;-->
+<!--<li class="dropdown-header">信息</li>-->
+<!--<li><a href="#">信息建立</a></li>-->
+<!--<li><a href="#">信息查询</a></li>-->
+<!--<li><a href="#">信息管理</a></li>-->
+<!--</ul>-->
+<!--</li>-->
+
+<!--<li><a href="#" data-toggle="modal" data-target="#about">帮助</a></li>-->
+
+<!--&lt;!&ndash;input必须得实现form-control才有样式效果&ndash;&gt;-->
+<!--<li><a><input type="text" placeholder="用户名" class="form-control"/></a></li>-->
+<!--<li><a><input type="text" placeholder="密码" class="form-control"/></a></li>-->
+<!--&lt;!&ndash;btn btn-default表示默认样式&ndash;&gt;-->
+<!--<li><a><button type="button" class="btn btn-default">登陆</button></a></li>-->
+
+<!--</ul>-->
+<!--</div>-->
+<!--</div>-->
+<!--</nav>-->
+<nav class="navbar navbar-inverse">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">代码依赖分析与展示平台</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="index.html">首页</a></li>
+                <li class="dependency"><a href="index2.html">依赖图</a></li>
+				<!--<li><a href="javascript:void(0);">Contact</a></li>-->
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">个人主页 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="indexinfo.html">个人信息</a></li>
+                        <li><a href="indexproject.html">我的项目</a></li>
+                        <li><a href="indexlabel.html">我的标签</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <!--<ul id="nav1" class="nav navbar-nav navbar-right">-->
+                <!--<li style="float: right"><a data-toggle="modal" data-target="#register_window" href=""><span class="glyphicon glyphicon-user"></span> 注册</a></li>-->
+                <!--<li style="float: right"><a data-toggle="modal" data-target="#login_window" href=""><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>-->
+            <!--</ul>-->
+            <!--<ul id="nav2" class="nav navbar-nav navbar-right" >-->
+                <!--<li style="float: right"><a id="poptest"  href="#"></a></li>-->
+            <!--</ul>-->
+        </div>
+    </div>
+</nav>
+
+<!--<div class="container">-->
+	<!--<div class="row">-->
+		<!--<div class="col-md-2">-->
+			<!--<div class="text-center" id="left-content">-->
+				<!--&lt;!&ndash;<div class="list-group">&ndash;&gt;-->
+					<!--&lt;!&ndash;<a href="index.html" class="list-group-item active">首页</a>&ndash;&gt;-->
+				<!--&lt;!&ndash;</div>&ndash;&gt;-->
+				<!--<div class="list-group">-->
+					<!--<a href="index2.html" class="list-group-item dependency">返回依赖</a>-->
+				<!--</div>-->
+				<!--<div class="list-group">-->
+					<!--<a href="indexinfo.html" class="list-group-item ">基本信息</a>-->
+					<!--<a href="indexproject.html" class="list-group-item">我的项目</a>-->
+					<!--<a href="indexlabel.html" class="list-group-item active">我的标签</a>-->
+                    <!--<a href="indexfriend.html" class="list-group-item">我的关注</a>-->
+				<!--</div>-->
+                <!--&lt;!&ndash;<div class="list-group">&ndash;&gt;-->
+                <!--&lt;!&ndash;<a href="#" class="list-group-item">设置</a>&ndash;&gt;-->
+                <!--&lt;!&ndash;<a href="#" class="list-group-item">帮助</a>&ndash;&gt;-->
+                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+			<!--</div>-->
+		<!--</div>-->
+		<!--<div class="col-md-10">-->
+			<!--<h2>我的标签</h2>-->
+			<!--<hr class="divider">-->
+
+            <!--<table id="labelTable" style="word-break:break-all; word-wrap:break-all;"></table>-->
+  			<!--</div>-->
+		<!--</div>-->
+
+	<!--</div>-->
+<!--</div>-->
+
+<div class="container">
+	<div class="row">
+		<div id="c1" class="col-md-2">
+			<div class="text-center" id="left-content">
+				<div class="list-group">
+					<!--<a href="index.html" class="list-group-item active">首页</a>-->
+				</div>
+				<div class="list-group">
+					<a href="index2.html" class="list-group-item dependency">返回依赖</a>
+				</div>
+				<div class="list-group">
+					<a href="indexinfo.html" class="list-group-item ">基本信息</a>
+					<a href="indexproject.html" class="list-group-item">我的项目</a>
+					<a href="indexlabel.html" class="list-group-item active">我的标签</a>
+                    <a href="indexfriend.html" class="list-group-item">我的关注</a>
+				</div>
+                <!--<div class="list-group">-->
+                <!--<a href="#" class="list-group-item">设置</a>-->
+                <!--<a href="#" class="list-group-item">帮助</a>-->
+                <!--</div>-->
+			</div>
+		</div>
+
+		<div id="c2" class="col-md-10">
+			<h2>我的项目</h2>
+			<hr class="divider">
+
+            <table id="labelTable" style="word-break:break-all; word-wrap:break-all;"></table>
+		</div>
+
+
+	</div>
+
+</div>
+
+<script src="./js/jquery.min.js"></script>
+    <script src="./js/bootstrap.js"></script>
+
+    <script src="./js/bootstrap-table.js"></script>
+    <script src="./js/locales/bootstrap-table-zh-CN.js"></script>
+    <link href="./css/bootstrap-table.css" rel="stylesheet">
+<script type="text/javascript" src="./js/bootbox.min.js"></script>
+<script>
+	function getCookie(name) {
+		var nameEQ = name + "=";
+		var ca = document.cookie.split(';');
+		for(var i=0;i < ca.length;i++) {
+			var c = ca[i];
+			while (c.charAt(0)==' ') c = c.substring(1,c.length);
+			if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+		}
+		return null;
+	}
+	$(function () {
+        var projectid = getCookie('dependency_projectid');
+        if(projectid!=""&&projectid!=null&&projectid!=undefined){
+            $('.dependency').css('display','block')
+        }else{
+            $('.dependency').css('display','none')
+        }
+		//1.初始化Table
+		var oTable = new TableInit();
+		oTable.Init();
+
+		//2.初始化Button的点击事件
+		var oButtonInit = new ButtonInit();
+		oButtonInit.Init();
+
+	});
+
+	var TableInit = function () {
+		var oTableInit = new Object();
+		//初始化Table
+		oTableInit.Init = function () {
+			$('#labelTable').bootstrapTable({
+				url: '/label/getbyusername',         //请求后台的URL（*）
+				method: 'GET',                      //请求方式（*）
+				toolbar: '#toolbar',                //工具按钮用哪个容器
+				striped: true,                      //是否显示行间隔色
+				cache: false,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+				pagination: true,                   //是否显示分页（*）
+				sortable: false,                     //是否启用排序
+				sortOrder: "asc",                   //排序方式
+				queryParams: oTableInit.queryParams,//传递参数（*）
+				sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）
+				pageNumber: 1,                       //初始化加载第一页，默认第一页
+				pageSize: 10,                       //每页的记录行数（*）
+				pageList: [10, 25, 50, 100],        //可供选择的每页的行数（*）
+				search: true,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
+				contentType: "application/x-www-form-urlencoded",
+				strictSearch: true,
+				showColumns: true,                  //是否显示所有的列
+				showRefresh: true,                  //是否显示刷新按钮
+				minimumCountColumns: 2,             //最少允许的列数
+				clickToSelect: true,                //是否启用点击选中行
+				height: 700,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
+				uniqueId: "projectid",                     //每一行的唯一标识，一般为主键列
+				showToggle: true,                    //是否显示详细视图和列表视图的切换按钮
+				cardView: false,                    //是否显示详细视图
+				detailView: false,                   //是否显示父子表
+				columns: [
+					{
+						field: 'title',
+						title: '标签名称'
+					}, {
+						field: 'content',
+						title: '标签内容'
+					}, {
+						field: 'parentelement',
+						title: '所属方法'
+					},{
+						field: 'createtime',
+						title: '标记时间'
+					},
+					{
+						field: 'operate',
+						title: '操作',
+						events: operateEvents1,
+						formatter: operateFormatter //自定义方法，添加操作按钮
+					},
+				],
+				rowStyle: function (row, index) {
+					// var classesArr = ['success', 'info'];
+					var strclass = "";
+					if (index % 2 === 0) {//偶数行
+						// strclass = classesArr[0];
+						strclass="active"
+					} else {//奇数行
+						// strclass = classesArr[1];
+					}
+					return { classes: strclass };
+				},//隔行变色
+			});
+
+		};
+
+		//得到查询的参数
+		oTableInit.queryParams = function (params) {
+			var temp = {   //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
+				limit: params.limit,   //页面大小
+				offset:params.offset,
+				username:getCookie("dependency_loginname"),
+				// limit: 10,   //页面大小
+				// offset:10,
+			};
+			return temp;
+		};
+		return oTableInit;
+	};
+
+	function operateFormatter(value, row, index) {//赋予的参数
+		console.log('value:'+value);
+		console.log('row:'+row.projectid);
+		console.log('index:'+index);
+		return [
+			// '<a class="btn active disabled" href="#">编辑</a>',
+			'<a class="ldetail btn btn-default" href="#" value="row.projectid">查看依赖</a>',
+			'<a class="ldelete btn btn-danger" href="#" value="row.projectid">删除</a>',
+			// '<a class="btn active" href="#">准入</a>'
+		].join('');
+	}
+
+	window.operateEvents1 = {
+		'click .ldetail': function(e, value, row, index) {
+			// alert(row.createtime)
+			// $(this).hidden
+			// var uid=$(this).parent().parent().attr("data-uniqueid");
+			// console.log(uid)
+            setCookie("dependency_projectid",row.projectid,24);
+            window.location.href="index2.html"
+		},
+		'click .ldelete': function(e, value, row, index) {
+			alert(row.createtime)
+			// $(this).parent().parent().remove();
+            var uid = row.projectid;
+            $('#projectTable').bootstrapTable('removeByUniqueId', uid);
+		}
+	};
+	//
+	// function operateFormatter(value, row, index) {
+	//     return [
+	//         '<button id="btn_detail" type="button" class="RoleOfA btn-default bt-select">详情</button>',
+	//     ].join('');
+	// }
+    function setCookie(name,value,days) {
+        var expires = "";
+        if (days) {
+            var date = new Date();
+            date.setTime(date.getTime() + (days*24*60*60*1000));
+            expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+    }
+
+	var ButtonInit = function () {
+		var oInit = new Object();
+		var postdata = {};
+
+		oInit.Init = function () {
+			//初始化页面上面的按钮事件
+			$(".btn").click(function () {
+				alert($(this).val());
+			})
+		};
+
+		return oInit;
+	};
+</script>
+
+<!--<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>-->
+<!--<script src="http://cdn.bootcss.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>-->
+</body>
+</html></span>

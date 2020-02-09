@@ -1,0 +1,57 @@
+.navbar-inverse {
+    background-color: #337AB7;
+    border-color: #337AB7
+}
+
+.navbar-inverse .navbar-brand {
+    color: #fff
+}
+
+.navbar-inverse .navbar-brand:focus, .navbar-inverse .navbar-brand:hover {
+    color: #fff;
+    background-color: transparent
+}
+
+.navbar-inverse .navbar-text {
+    color: #fff
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: #fff
+}
+
+.navbar-inverse .navbar-nav > li > a:focus, .navbar-inverse .navbar-nav > li > a:hover {
+    color: #fff;
+    background-color: #265C89
+}
+
+.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:focus, .navbar-inverse .navbar-nav > .active > a:hover {
+    color: #fff;
+    background-color: #265C89
+}
+
+.navbar-inverse .navbar-nav > .disabled > a, .navbar-inverse .navbar-nav > .disabled > a:focus, .navbar-inverse .navbar-nav > .disabled > a:hover {
+    color: #265C89;
+    background-color: #265C89
+}
+
+.navbar-inverse .navbar-toggle {
+    border-color: #337AB7
+}
+
+.navbar-inverse .navbar-toggle:focus, .navbar-inverse .navbar-toggle:hover {
+    background-color: #337AB7
+}
+
+.navbar-inverse .navbar-toggle .icon-bar {
+    background-color: #fff
+}
+
+.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+    border-color: #337AB7
+}
+
+.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:focus, .navbar-inverse .navbar-nav > .open > a:hover {
+    color: #fff;
+    background-color: #265C89
+}

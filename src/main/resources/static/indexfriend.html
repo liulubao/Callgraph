@@ -1,0 +1,383 @@
+<span style="font-size:18px;"><!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+
+    <title>个人信息</title>
+    <!--<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">-->
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/bootstrap.css" rel="stylesheet">
+    <link href="./css/navbarcolor.css" rel="stylesheet">
+<style>
+	body{
+        background-color: #F5F6F7;
+        /*margin-top: 65px;*/
+    }
+    #c1:after{
+        content: '';
+        position: absolute;
+        width: 5px;
+        height: 100%;
+        background-color:  #F5F6F7;
+        top:1px;
+        bottom: 1px;
+        right: 0;}
+
+    #c1{
+        margin-top: 20px;
+        background-color: #FFFFFF;
+        /*?*/
+        /*height: 600px;*/
+    }
+    #c2{
+        margin-top: 20px;
+        background-color: #FFFFFF;
+    }
+    #left-content{
+        margin-top: 20px;
+    }
+    #panel-group{
+        margin-top: 20px;
+    }
+
+</style>
+
+</head>
+
+<body>
+<nav class="navbar navbar-inverse">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">代码依赖分析与展示平台</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="index.html">首页</a></li>
+                <li class="dependency"><a href="index2.html">依赖图</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">个人主页 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="indexinfo.html">个人信息</a></li>
+                        <li><a href="indexproject.html">我的项目</a></li>
+                        <li><a href="indexlabel.html">我的标签</a></li>
+                        <li><a href="indexlabel.html">我的关注</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="modal fade" id="friendModal" tabindex="-1" role="dialog" aria-labelledby="friendModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="friendModalLabel">查找用户</h4>
+      </div>
+      <div class="modal-body">
+        <form id="login_form" class="form-group" action="">
+                    <div class="input-group">
+                        <label for="">用户名</label>
+                        <input id="targetname" type="text" class="form-control" placeholder="Search for...">
+                    </div>
+		</form>
+
+              <div style="text-align: center;width: 100%" >
+                <table id="usertable" class="table table-bordered" style="width:560px;table-layout: fixed;display: none" >
+                <thead>
+                <tr>
+                    <th width="140px">登录名</th>
+                    <th width="140px">用户名</th>
+                    <th width="140px">email</th>
+                    <th width="140px">操作</th>
+                </tr>
+                </thead>
+                <tbody id="friendcontent">
+                </tbody>
+                </table>
+            </div>
+      </div>
+      <div class="modal-footer">
+		  <button id="searchuser" type="button" class="btn btn-primary" value="">查找</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+	<div class="row">
+		<div id="c1" class="col-md-2">
+			<div class="text-center" id="left-content">
+				<div class="list-group">
+					<!--<a href="index.html" class="list-group-item active">首页</a>-->
+				</div>
+				<div class="list-group">
+					<a href="index2.html" class="list-group-item dependency">返回依赖</a>
+				</div>
+				<div class="list-group">
+					<a href="indexinfo.html" class="list-group-item">基本信息</a>
+					<a href="indexproject.html" class="list-group-item">我的项目</a>
+					<a href="indexlabel.html" class="list-group-item">我的标签</a>
+                    <a href="indexfriend.html" class="list-group-item active">我的关注</a>
+				</div>
+			</div>
+		</div>
+
+		<div id="c2" class="col-md-10">
+			<h2>我的关注</h2>
+			<hr class="divider">
+            <div>
+                <a id="addfollow" class="btn btn-primary" style="float: right;margin: 10px" data-toggle="modal" data-target="#friendModal">添加关注</a>
+                <table id="friendTable" style="word-break:break-all;"></table>
+            </div>
+		</div>
+    </div>
+</div>
+
+
+<script src="./js/jquery.min.js"></script>
+    <script src="./js/bootstrap.js"></script>
+
+    <script src="./js/bootstrap-table.js"></script>
+    <script src="./js/locales/bootstrap-table-zh-CN.js"></script>
+    <link href="./css/bootstrap-table.css" rel="stylesheet">
+<script type="text/javascript" src="./js/bootbox.min.js"></script>
+<script>
+    var testdata = [];
+    $('#addfollow').click(function () {
+        $('#targetname').val('')
+        $("#usertable").css("display","none");
+        $("#login_form").css("display","block");
+        // $("#friendcontent")
+        var div = document.getElementById("friendcontent");
+        while(div.hasChildNodes()) //当div下还存在子节点时 循环继续
+        {
+            div.removeChild(div.firstChild);
+        }
+
+    })
+    var savefollow = function(followedloginname,followedviewname){
+        var followingloginname = getCookie("dependency_loginname");
+        var followingviewname = getCookie("dependency_viewname");
+        if(followingloginname.length!=0&&followingviewname.length!=0&&followedloginname.length!=0&&followedviewname.length!=0){
+            $.ajax({
+                type: 'POST',
+                url: "/friend/savefriend",
+                contentType: 'application/json',
+                data:'{"followedloginname":"'+followedloginname+'","followedviewname":"'+followedviewname+'","followingloginname":"'+followingloginname+'","followingviewname":"'+followingviewname+'"}',
+                success: function (data) {
+                    location.reload();
+                },
+                error: function(data) {
+                },
+            })
+        }
+    }
+    $("#searchuser").click(function () {
+        console.log('testdata')
+        console.log(testdata)
+
+        var loginname = $('#targetname').val();
+
+        if (loginname.length != 0){
+            $.ajax({
+                type: 'GET',
+                url: "/user/findbyloginname",
+                contentType: 'application/json',
+                // contentType: 'application/json',
+                <!-- headers: { 'userName': username, 'password': password }, -->
+                data:{"loginname":loginname},
+                success: function (data) {
+                    result = data.result;
+                    if(result.length == 0){
+                        bootbox.alert('没有这个用户，请确认信息正确');
+                    }else{
+
+                        $("#usertable").css("display","block");
+                        $("#login_form").css("display","none");
+                        // for(user in result){
+                        for(var i=0;i<result.length;i++){
+                            if(testdata.indexOf(result[0].loginname)== -1){
+                                $("#friendcontent").append(
+                                    '<tr>\n' +
+                                    '                    <td>'+result[0].loginname+'</td>\n' +
+                                    '                    <td>'+result[0].viewname+'</td>\n' +
+                                    '                    <td>'+result[0].email+'</td>\n' +
+                                    '                    <td><a class="btn btn-default" onclick="savefollow(result[0].loginname,result[0].viewname)">关注</a></td>\n' +
+                                    '                </tr>' )
+                            }else{
+                                $("#friendcontent").append(
+                                    '<tr>\n' +
+                                    '                    <td>'+result[0].loginname+'</td>\n' +
+                                    '                    <td>'+result[0].viewname+'</td>\n' +
+                                    '                    <td>'+result[0].email+'</td>\n' +
+                                    '                    <td><a class="btn btn-default disabled">已关注</a></td>\n' +
+                                    '                </tr>' )
+                            }
+
+                        }
+
+                        // }
+                    }
+                },
+                error: function(data) {
+                    bootbox.alert('查找失败');
+                },
+            })
+        }
+
+    })
+
+    function setCookie(name,value,days) {
+        var expires = "";
+        if (days) {
+            var date = new Date();
+            date.setTime(date.getTime() + (days*24*60*60*1000));
+            expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+    }
+
+    function getCookie(name) {
+        var nameEQ = name + "=";
+        var ca = document.cookie.split(';');
+        for(var i=0;i < ca.length;i++) {
+            var c = ca[i];
+            while (c.charAt(0)==' ') c = c.substring(1,c.length);
+            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+        }
+        return null;
+    }
+        $(function () {
+            var projectid = getCookie('dependency_projectid');
+            if(projectid!=""&&projectid!=null&&projectid!=undefined){
+                $('.dependency').css('display','block')
+            }else{
+                $('.dependency').css('display','none')
+            }
+            //1.初始化Table
+            var oTable = new TableInit();
+            oTable.Init();
+
+            // //2.初始化Button的点击事件
+            // var oButtonInit = new ButtonInit();
+            // oButtonInit.Init();
+
+        });
+
+        var TableInit = function () {
+            var oTableInit = new Object();
+            //初始化Table
+            oTableInit.Init = function () {
+                $('#friendTable').bootstrapTable({
+                    url: '/friend/getbyfollowingloginname',         //请求后台的URL（*）
+                    method: 'GET',                      //请求方式（*）
+                    toolbar: '#toolbar',                //工具按钮用哪个容器
+                    striped: true,                      //是否显示行间隔色
+                    cache: false,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+                    pagination: false,                  //是否显示分页（*）
+                    sortable: false,                     //是否启用排序
+                    sortOrder: "asc",                   //排序方式
+                    queryParams: oTableInit.queryParams,//传递参数（*）
+                    sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）
+                    pageNumber: 1,                       //初始化加载第一页，默认第一页
+                    pageSize: 10,                       //每页的记录行数（*）
+                    pageList: [10, 25, 50, 100],        //可供选择的每页的行数（*）
+                    search: false,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
+                    contentType: "application/x-www-form-urlencoded",
+                    strictSearch: true,
+                    showColumns: false,                  //是否显示所有的列
+                    showRefresh: false,                  //是否显示刷新按钮
+                    minimumCountColumns: 2,             //最少允许的列数
+                    clickToSelect: false,                //是否启用点击选中行
+                    // height: 700,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
+                    uniqueId: "projectid",                     //每一行的唯一标识，一般为主键列
+                    showToggle: false,                    //是否显示详细视图和列表视图的切换按钮
+                    cardView: false,                    //是否显示详细视图
+                    detailView: false,                   //是否显示父子表
+                    columns: [
+                        {
+                            field: 'followedloginname',
+                            title: '关注者登录名'
+                        }, {
+                            field: 'followedviewname',
+                            title: '关注者昵称'
+                        }, {
+                            field: 'operate',
+                            title: '操作',
+                            events: operateEvents1,
+                            formatter: operateFormatter //自定义方法，添加操作按钮
+                        },
+                    ],
+                    rowStyle: function (row, index) {
+                        // var classesArr = ['success', 'info'];
+                        var strclass = "";
+                        if (index % 2 === 0) {//偶数行
+                            // strclass = classesArr[0];
+                            strclass="active"
+                        } else {//奇数行
+                            // strclass = classesArr[1];
+                        }
+                        return { classes: strclass };
+                    },//隔行变色
+                });
+
+            };
+
+            //得到查询的参数
+            oTableInit.queryParams = function (params) {
+                var temp = {   //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
+                    // limit: 5,   //页面大小
+                    // offset:0,
+                    followingloginname:getCookie("dependency_loginname"),
+                    // limit: 10,   //页面大小
+                    // offset:10,
+                };
+                return temp;
+            };
+            return oTableInit;
+        };
+
+        function operateFormatter(value, row, index) {//赋予的参数
+            testdata.push(row.followedloginname);
+            console.log('value:'+value);
+            console.log('row:'+row.followedloginname);
+            console.log('index:'+index);
+            return [
+                // '<a class="btn active disabled" href="#">编辑</a>',
+                '<a class="lmessage btn btn-primary" href="#" value="row.followedloginname">私信</a>',
+                '<a class="ldetail btn btn-default" href="indexproject.html" value="row.projectid">分享项目</a>',
+                '<a class="ldelete btn btn-danger" href="#" value="row.projectid">删除</a>',
+                // '<a class="btn active" href="#">准入</a>'
+            ].join('');
+        }
+
+        window.operateEvents1 = {
+            'click .lmessage': function(e, value, row, index) {
+                setCookie("dependency_friendname",row.followedloginname);
+                window.location.href="indexmessage.html"
+            },
+            'click .ldetail': function(e, value, row, index) {
+                setCookie("dependency_projectid",row.projectid,24);
+                window.location.href="index2.html"
+            },
+            'click .ldelete': function(e, value, row, index) {
+                var uid = row.projectid;
+                $('#projectTable').bootstrapTable('removeByUniqueId', uid);
+            }
+
+        };
+
+</script>
+</body>
+</html></span>

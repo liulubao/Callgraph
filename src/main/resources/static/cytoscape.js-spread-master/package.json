@@ -37,7 +37,7 @@
     "update": "^0.7.4",
     "updater-license": "^1.0.0",
     "webpack": "^2.7.0",
-    "webpack-dev-server": "^2.11.2"
+    "webpack-dev-server": "^3.1.11"
   },
   "dependencies": {
     "weaverjs": "^1.2.0"
